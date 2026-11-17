@@ -154,7 +154,7 @@ public class MainActivity extends Activity {
             row.setPadding(dp(10), dp(15), dp(10), dp(15));
             row.setElevation(dp(1));
             row.setContentDescription("Speak: " + number + " times " + i + " equals " + result);
-            row.setOnClickListener(v -> speak(number + " times " + multiplier + " equals " + (number * multiplier)));
+            row.setOnClickListener(v -> speak(spokenEquation(number, multiplier)));
             LinearLayout.LayoutParams rp = new LinearLayout.LayoutParams(-1, -2);
             rp.setMargins(0, dp(4), 0, dp(4));
             root.addView(row, rp);
@@ -183,10 +183,38 @@ public class MainActivity extends Activity {
     }
 
     private void speakFullTable(int number) {
-        StringBuilder words = new StringBuilder("The table of ").append(number).append(". ");
+        StringBuilder words = new StringBuilder("The table of ").append(numberWords(number)).append(". ");
         for (int i = 1; i <= 20; i++)
-            words.append(number).append(" times ").append(i).append(" equals ").append(number * i).append(". ");
+            words.append(spokenEquation(number, i)).append(". ");
         speak(words.toString());
+    }
+
+    // Speaks equations in the familiar school-recitation style:
+    // "Two ones are two", "Five tens are fifty".
+    private String spokenEquation(int table, int multiplier) {
+        int product = table * multiplier;
+        if (table == 1) {
+            return "One times " + numberWords(multiplier) + " is " + numberWords(product);
+        }
+        String multiplierWord = numberWords(multiplier);
+        String plural = multiplier == 6 ? "sixes" : multiplierWord + "s";
+        return numberWords(table) + " " + plural + " are " + numberWords(product);
+    }
+
+    private String numberWords(int number) {
+        String[] ones = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+                "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+        String[] tens = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+        if (number < 20) return ones[number];
+        if (number < 100) {
+            int remainder = number % 10;
+            return tens[number / 10] + (remainder == 0 ? "" : "-" + ones[remainder]);
+        }
+        if (number < 1000) {
+            int remainder = number % 100;
+            return ones[number / 100] + " hundred" + (remainder == 0 ? "" : " " + numberWords(remainder));
+        }
+        return String.valueOf(number);
     }
 
     @Override protected void onDestroy() {

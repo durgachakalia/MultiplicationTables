@@ -44,3 +44,7 @@ git push -u origin main
 - Speech language is set to English (India), with English (US) as a fallback.
 - If speech is silent, check that a Text-to-Speech engine is installed and enabled in Android Settings → Accessibility / Text-to-speech output. The exact menu name varies by phone.
 - Change `versionCode` and `versionName` in `app/build.gradle` for future releases.
+
+
+## Spoken multiplication style
+Individual equations and Read Full Table use school-style recitation, for example: “Two ones are two”, “Two twos are four”, and “Five tens are fifty”. The table of 1 uses natural singular phrasing such as “One times two is two”.
