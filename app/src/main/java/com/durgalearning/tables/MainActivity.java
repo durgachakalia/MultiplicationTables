@@ -189,27 +189,46 @@ public class MainActivity extends Activity {
         speak(words.toString());
     }
 
-    // All speech uses traditional school recitation, e.g. "Two twos are four".
+    // Traditional school recitation. The multiplier is spoken as a plural noun:
+    // 1 x 2 -> "One twos are two"; 2 x 1 -> "Two ones are two".
     private String spokenEquation(int table, int multiplier) {
         int product = table * multiplier;
         String tableWord = numberWords(table);
-        String multiplierWord = numberWords(multiplier);
+        String productWord = numberWords(product);
 
-        // The 1-times table uses singular grammar: "One two is two".
-        if (table == 1) {
-            String multiplierNoun = multiplier == 1 ? "one" : multiplierWord;
-            return "One " + multiplierNoun + " is " + numberWords(product);
+        // Keep the single fact natural while all other facts use the plural recitation form.
+        if (table == 1 && multiplier == 1) {
+            return "One one is one";
         }
 
-        String multiplierPlural;
-        if (multiplier == 1) {
-            multiplierPlural = "one";
-        } else if (multiplier == 6) {
-            multiplierPlural = "sixes";
-        } else {
-            multiplierPlural = multiplierWord + "s";
+        String multiplierPlural = pluralMultiplier(multiplier);
+        return tableWord + " " + multiplierPlural + " are " + productWord;
+    }
+
+    private String pluralMultiplier(int number) {
+        switch (number) {
+            case 1: return "ones";
+            case 2: return "twos";
+            case 3: return "threes";
+            case 4: return "fours";
+            case 5: return "fives";
+            case 6: return "sixes";
+            case 7: return "sevens";
+            case 8: return "eights";
+            case 9: return "nines";
+            case 10: return "tens";
+            case 11: return "elevens";
+            case 12: return "twelves";
+            case 13: return "thirteens";
+            case 14: return "fourteens";
+            case 15: return "fifteens";
+            case 16: return "sixteens";
+            case 17: return "seventeens";
+            case 18: return "eighteens";
+            case 19: return "nineteens";
+            case 20: return "twenties";
+            default: return numberWords(number) + "s";
         }
-        return tableWord + " " + multiplierPlural + " are " + numberWords(product);
     }
 
     private String numberWords(int number) {

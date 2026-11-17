@@ -52,3 +52,11 @@ Individual equations and Read Full Table use school-style recitation, for exampl
 
 ## Version 1.1 – Recitation voice fix
 All tapped equations and full-table playback now use traditional spoken recitation, such as “Two twos are four” and “Five tens are fifty”. App versionCode is 2 so Android can recognize it as an update.
+
+
+## Version 1.2 update
+- App display name: Chakalia Tables.
+- Tables 1–20, each from ×1 through ×20.
+- Recitation now pluralizes the multiplier consistently: “One twos are two”, “Two ones are two”, “Two threes are six”.
+- Full-table reading and individual equation reading share the same speech function.
+- Updated launcher icon assets for adaptive and legacy Android launchers.
