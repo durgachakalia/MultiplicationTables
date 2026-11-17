@@ -1,11 +1,11 @@
-# Tables 1 to 20 – Android Learning App
+# Chakalia Tables – Android Learning App
 
 A simple, colourful multiplication-table learning app for students. Built with native Android Java and standard Android views; no third-party libraries are required.
 
 ## Features
-- Multiplication tables from 1 to 20 (1–10 multiples each).
+- Multiplication tables from 1 to 20, with each table running from ×1 through ×20.
 - Tap any table card to open its table.
-- Tap any equation to hear it spoken using Android Text-to-Speech.
+- Tap any equation (×1 through ×20) to hear it spoken using Android Text-to-Speech.
 - Read Full Table and Stop controls.
 - Custom launcher icon.
 - Offline-friendly; speech uses the device's installed Android TTS engine.

@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
     }
 
     private void addHeader(String subtitle) {
-        TextView title = text("✖  TABLES 1–20", 25, Color.WHITE, true);
+        TextView title = text("✖  CHAKALIA TABLES", 25, Color.WHITE, true);
         title.setGravity(Gravity.CENTER_VERTICAL);
         title.setPadding(dp(18), dp(18), dp(18), dp(5));
         TextView sub = text(subtitle, 14, 0xFFE0E7FF, false);
@@ -115,7 +115,7 @@ public class MainActivity extends Activity {
             grid.addView(tile, lp);
         }
         root.addView(grid);
-        TextView footer = text("Tap a table line to hear it spoken aloud.", 14, 0xFF64748B, false);
+        TextView footer = text("Every table runs from ×1 to ×20. Tap a line to hear it spoken aloud.", 14, 0xFF64748B, false);
         footer.setPadding(0, dp(18), 0, dp(4));
         root.addView(footer);
     }
@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
     private void showTable(int number) {
         currentTable = number;
         page();
-        addHeader("Tap any line and listen to the answer");
+        addHeader("Tap any line from 1 to 20 and listen");
         Button back = button("←  All tables", 0xFFE0E7FF, purple);
         back.setOnClickListener(v -> showHome());
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(-2, dp(46));
@@ -146,7 +146,7 @@ public class MainActivity extends Activity {
         speakAll.setOnClickListener(v -> speakFullTable(number));
         stop.setOnClickListener(v -> { if (tts != null) tts.stop(); });
 
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 20; i++) {
             final int multiplier = i;
             int result = number * i;
             TextView row = text(number + "  ×  " + i + "  =  " + result, 21, ink, true);
@@ -184,7 +184,7 @@ public class MainActivity extends Activity {
 
     private void speakFullTable(int number) {
         StringBuilder words = new StringBuilder("The table of ").append(number).append(". ");
-        for (int i = 1; i <= 10; i++)
+        for (int i = 1; i <= 20; i++)
             words.append(number).append(" times ").append(i).append(" equals ").append(number * i).append(". ");
         speak(words.toString());
     }
