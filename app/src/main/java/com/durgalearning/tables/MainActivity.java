@@ -153,7 +153,7 @@ public class MainActivity extends Activity {
             row.setBackground(shape(palette[(i - 1) % palette.length], 16));
             row.setPadding(dp(10), dp(15), dp(10), dp(15));
             row.setElevation(dp(1));
-            row.setContentDescription("Speak: " + number + " times " + i + " equals " + result);
+            row.setContentDescription(spokenEquation(number, i));
             row.setOnClickListener(v -> speak(spokenEquation(number, multiplier)));
             LinearLayout.LayoutParams rp = new LinearLayout.LayoutParams(-1, -2);
             rp.setMargins(0, dp(4), 0, dp(4));
@@ -189,16 +189,27 @@ public class MainActivity extends Activity {
         speak(words.toString());
     }
 
-    // Speaks equations in the familiar school-recitation style:
-    // "Two ones are two", "Five tens are fifty".
+    // All speech uses traditional school recitation, e.g. "Two twos are four".
     private String spokenEquation(int table, int multiplier) {
         int product = table * multiplier;
-        if (table == 1) {
-            return "One times " + numberWords(multiplier) + " is " + numberWords(product);
-        }
+        String tableWord = numberWords(table);
         String multiplierWord = numberWords(multiplier);
-        String plural = multiplier == 6 ? "sixes" : multiplierWord + "s";
-        return numberWords(table) + " " + plural + " are " + numberWords(product);
+
+        // The 1-times table uses singular grammar: "One two is two".
+        if (table == 1) {
+            String multiplierNoun = multiplier == 1 ? "one" : multiplierWord;
+            return "One " + multiplierNoun + " is " + numberWords(product);
+        }
+
+        String multiplierPlural;
+        if (multiplier == 1) {
+            multiplierPlural = "one";
+        } else if (multiplier == 6) {
+            multiplierPlural = "sixes";
+        } else {
+            multiplierPlural = multiplierWord + "s";
+        }
+        return tableWord + " " + multiplierPlural + " are " + numberWords(product);
     }
 
     private String numberWords(int number) {

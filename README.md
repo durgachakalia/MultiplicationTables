@@ -48,3 +48,7 @@ git push -u origin main
 
 ## Spoken multiplication style
 Individual equations and Read Full Table use school-style recitation, for example: “Two ones are two”, “Two twos are four”, and “Five tens are fifty”. The table of 1 uses natural singular phrasing such as “One times two is two”.
+
+
+## Version 1.1 – Recitation voice fix
+All tapped equations and full-table playback now use traditional spoken recitation, such as “Two twos are four” and “Five tens are fifty”. App versionCode is 2 so Android can recognize it as an update.
